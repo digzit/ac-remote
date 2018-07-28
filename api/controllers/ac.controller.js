@@ -24,7 +24,6 @@ var nodeLIRC = require('node-lirc');
 
 exports.sendCommand = function(req, res) {
   // lirc.on('connect', function () {
-  console.log(nodeLIRC.remotes);
     nodeLIRC.send('danby', req.params.command);
 
         res.json({ message: 'Success send command: ' + req.params.command });
