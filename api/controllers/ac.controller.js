@@ -1,9 +1,5 @@
 'use strict';
 
-const lirc = require('lirc-client')({
-  path: '/var/run/lirc/lircd'
-});
-
 // exports.acceptAgreement = function(req, res) {
 //   let errorObj = {};
 //   instance({
@@ -25,14 +21,18 @@ const lirc = require('lirc-client')({
 // };
 
 exports.sendCommand = function(req, res) {
+  const lirc = require('lirc-client')({
+    path: '/var/run/lirc/lircd'
+  });
   // lirc.on('connect', function () {
-  lirc.on('connect', () => {
+  lirc.on('connect', (e) => {
+    console.log('connect', e)
     lirc.sendOnce('danby', req.params.command).catch(error => {
-        if (error) console.log(error);
+        if (error) res.json(error);
     });
   });
 
-        res.json({ message: 'Success send command: ' + req.params.command });
+        // res.json({ message: 'Success send command: ' + req.params.command });
 
 
     // lirc.cmd('SEND_ONCE', 'danby', req.params.command, function (err) {
