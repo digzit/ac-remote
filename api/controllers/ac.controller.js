@@ -1,6 +1,8 @@
 'use strict';
 
-var nodeLIRC = require('node-lirc');
+const lirc = require('lirc-client')({
+  path: '/var/run/lirc/lircd'
+});
 
 // exports.acceptAgreement = function(req, res) {
 //   let errorObj = {};
@@ -24,7 +26,11 @@ var nodeLIRC = require('node-lirc');
 
 exports.sendCommand = function(req, res) {
   // lirc.on('connect', function () {
-    nodeLIRC.send('danby', req.params.command);
+  lirc.on('connect', () => {
+    lirc.sendOnce('danby', req.params.command).catch(error => {
+        if (error) console.log(error);
+    });
+  });
 
         res.json({ message: 'Success send command: ' + req.params.command });
 
