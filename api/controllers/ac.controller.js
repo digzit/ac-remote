@@ -27,12 +27,14 @@ exports.sendCommand = function(req, res) {
   // lirc.on('connect', function () {
   lirc.on('connect', (e) => {
     console.log('connect', e)
-    lirc.sendOnce('danby', req.params.command).catch(error => {
-        if (error) res.json(error);
+    lirc.sendOnce('danby', req.params.command)
+    .then(() => {
+      res.json({ message: 'Success send command: ' + req.params.command });  
+    })
+    .catch(error => {
+      if (error) res.json(error);
     });
   });
-
-        // res.json({ message: 'Success send command: ' + req.params.command });
 
 
     // lirc.cmd('SEND_ONCE', 'danby', req.params.command, function (err) {
