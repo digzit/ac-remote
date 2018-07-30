@@ -7,4 +7,4 @@ var express = require('express'),
 
   app.listen(port);
 
-console.log('Digz home API server started on: ' + port);
+console.log('API server started on: ' + port);
