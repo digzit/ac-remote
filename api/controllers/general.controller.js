@@ -5,7 +5,7 @@ exports.listCommands = function(req, res) {
     path: '/var/run/lirc/lircd'
   });
   lirc.on('connect', () => {
-    lirc.lsit(req.params.remoteName)
+    lirc.list(req.params.remoteName)
     .then( response => {
       res.json(response);
     })
