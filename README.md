@@ -1,7 +1,7 @@
 # ac-remote
 
 # API to remote an AC
-I use an raspberry py 3 with a IR led and lirc package. This is project to manage commands sender using node.js and https://github.com/hobbyquaker/lirc-client  (you can see all lirc module commands here)
+I use an raspberry pi 3 with a IR led and lirc package. This is project to manage commands sender using node.js and https://github.com/hobbyquaker/lirc-client  (you can see all lirc module commands here)
 
 ## Installation
 > npm i
