@@ -5,7 +5,9 @@ exports.sendCommand = function(req, res) {
     path: '/var/run/lirc/lircd'
   });
   lirc.on('connect', () => {
-    lirc.sendOnce('danby', req.params.command)
+    lirc.sendOnce(
+      req.params.remoteName, 
+      req.params.command)
     .then(() => {
       res.json({ message: 'Success send command: ' + req.params.command });
     })
