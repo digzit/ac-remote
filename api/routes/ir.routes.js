@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   var general = require('../controllers/general.controller');
-  var ac = require('../controllers/ir.controller');
+  var ir = require('../controllers/ir.controller');
 
   app.route('/list/:remoteName')
     .get(general.listCommands)
